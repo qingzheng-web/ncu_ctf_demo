@@ -6,9 +6,11 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/docker_project?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username: root
-      password: 1234
+      url: jdbc:mysql://demo.io:3306/ncu_demo?useSSL=false&characterEncoding=utf-8
+#      url: jdbc:mysql://localhost:3306/docker_project?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: Q1ng
+      password: ncu123456
+      #这个mvc比较关键，没加的话就会形成不了整体，显示的是简单的页面
   mvc:
     static-path-pattern: /static/**
 

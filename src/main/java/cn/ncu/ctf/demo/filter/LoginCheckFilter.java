@@ -60,7 +60,6 @@ public class LoginCheckFilter implements Filter {
      * 路径匹配，检查本次请求是否需要放行
      * */
     public boolean check(String[] uris,String requestURI) {
-
         for(String uri : uris){
             //将请求URI 与 放行路径中的URI进行比较
             boolean match = ANT_PATH_MATCHER.match(uri, requestURI);

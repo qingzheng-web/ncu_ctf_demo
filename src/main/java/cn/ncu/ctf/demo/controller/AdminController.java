@@ -5,6 +5,7 @@ import cn.ncu.ctf.demo.entities.User;
 import cn.ncu.ctf.demo.service.ManagerService;
 import cn.ncu.ctf.demo.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,17 @@ public class AdminController {
      *  @author: ijnge
      *  @Date: 2022/10/26
      *  @Description: 处理用户登录请求
+     *  这段代码中存在以下不足之处：
+     *
+     * 密码加密方式使用了MD5，但是MD5已经被认为是一种不安全的加密方式，容易被暴力破解。建议使用更强大的加密算法，如SHA256、bcrypt等。
+     *
+     * 在查询管理员信息时，使用了getOne方法，如果没有查询到结果，会抛出异常。建议改为使用list或者lambdaQuery方法，并且在查询结果为空时，做相应的处理。
+     *
+     * 在登录失败时，直接将错误信息返回给用户，存在安全风险。建议使用日志记录错误信息，避免敏感信息泄露。
+     *
+     * session中存储了管理员信息，存在安全隐患。建议对管理员信息进行加密或者使用JWT等状态无关的鉴权方式来保证安全性。
+     *
+     * 登录成功后，直接返回管理员首页，没有对用户角色进行校验。建议增加角色校验逻辑，确保管理员只能访问自己有权限的页面。
      */
     @RequestMapping("/admin/login")
     public String login(
@@ -54,6 +66,7 @@ public class AdminController {
         String password = manager.getPassword();
 
         password = DigestUtils.md5DigestAsHex(password.getBytes());
+
         //根据页面提交的用户名username查询数据库
         LambdaQueryWrapper<Manager> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Manager::getUsername,manager.getUsername());
@@ -99,11 +112,23 @@ public class AdminController {
      *  @Date: 2022/10/31
      *  @Description:返回用户列表未做分页
      */
+//    @RequestMapping("/admin/UserManage/UserList")
+//    public String UserList(Model model,HttpServletRequest httpServletRequest) {
+//        Manager manager =(Manager) httpServletRequest.getSession().getAttribute("manager");
+//        List<User> list = userService.list();
+//        model.addAttribute("userList",list);
+//        model.addAttribute("manager",manager);
+//        return "/admin/userList";
+//    }
+
+    //做了分页，但没有查看效果
     @RequestMapping("/admin/UserManage/UserList")
-    public String UserList(Model model,HttpServletRequest httpServletRequest) {
-        Manager manager =(Manager) httpServletRequest.getSession().getAttribute("manager");
-        List<User> list = userService.list();
-        model.addAttribute("userList",list);
+    public String UserList(Model model,HttpServletRequest httpServletRequest,
+                           @RequestParam(defaultValue = "1") Integer pageNum,
+                           @RequestParam(defaultValue = "10") Integer pageSize){
+        Manager manager = (Manager) httpServletRequest.getSession().getAttribute("manage");
+        PageInfo<User> pageInfo = userService.listWithPage(pageNum,pageSize);
+        model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("manager",manager);
         return "/admin/userList";
     }

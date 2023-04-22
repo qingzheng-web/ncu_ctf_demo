@@ -2,6 +2,7 @@ package cn.ncu.ctf.demo.service;
 
 import cn.ncu.ctf.demo.entities.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +11,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService extends IService<User> {
+    PageInfo<User> listWithPage(Integer pageNum, Integer pageSize);
 }
