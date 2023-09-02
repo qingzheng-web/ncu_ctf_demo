@@ -9,6 +9,8 @@ crud...
 ● 通知栏：社区管理员发布的通知。
 ● 题解：所有用户可参与讨论，拥有评论区。
 
+![img](F:/CTF笔记图像/3swZK2QdknCAVwARAAH_zgpuIJM603.pngn=1666699896056-624bf6b9-c6f5-47e8-a8e4-dcaf7bb2b9ec.png)
+
 1.3对每个实体定义的属性如下
 管理员 manager：{id_manager,username,password,email,headImage,level,phone}
 用户 user：{id_user,username,password,email,headImage,scores,address,phone}
@@ -64,7 +66,7 @@ CREATE TABLE `challenges` (
 
 /*Data for the table `challenges` */
 
-/*Table structure for table `commond` */
+/*Table structure for table `commond(留言)` */
 
 DROP TABLE IF EXISTS `commond`;
 

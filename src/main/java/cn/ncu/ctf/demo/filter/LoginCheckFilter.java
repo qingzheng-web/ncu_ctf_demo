@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 
 @Slf4j
-@WebFilter(filterName = "loginCheckFilter",urlPatterns = "/admin/*")
+@WebFilter(filterName = "LoginCheckFilter",urlPatterns = "/admin/*")
 public class LoginCheckFilter implements Filter {
     //进行路径比较 对于 /backend/index.html这样的进行过滤
     public static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -30,10 +31,10 @@
           <i class="dropdown icon"></i>
           <div class="menu">
             <div class="item">
-              <a  href="#" th:href="@{/login}" class="item">登录</a>
+              <a  href="#" th:href="@{/Login}" class="item">登录</a>
             </div>
             <div class="item">
-              <a  href="#" th:href="@{/user/login}" class="item">个人信息</a>
+              <a  href="#" th:href="@{/user/Login}" class="item">个人信息</a>
             </div>
             <div class="item">
               <a href="#" th:href="@{/user/logout}" class="item">退出</a>
@@ -120,6 +121,7 @@
       }
     }
   })
+  //this.$refs.form.resetFields()
 </script>
 
 </html>
