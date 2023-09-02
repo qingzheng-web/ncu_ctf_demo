@@ -162,7 +162,7 @@ public class AdminController {
      *  @Date: 2022/11/8
      *  @Description: 返回管理员列表
      */
-    @RequestMapping("/admin/Manager/ManagerList")
+    @RequestMapping("/admin/manager/managerList")
     public String ManagerList(Model model,HttpServletRequest httpServletRequest) {
         Manager manager =(Manager) httpServletRequest.getSession().getAttribute("manager");
         List<Manager> list = managerService.list();
@@ -190,7 +190,7 @@ public class AdminController {
      *  @Date: 2022/11/13
      *  @Description:  添加管理员
      */
-    @PostMapping("/admin/Manager/AddManager")
+    @RequestMapping("/admin/manager/addManager")
     public String addManager(
             Manager manager,
             Model model
@@ -199,7 +199,7 @@ public class AdminController {
         //md5加密
         manager.setPassword(DigestUtils.md5DigestAsHex(manager.getPassword().getBytes()));
         managerService.save(manager);
-        return "redirect:/admin/Manager/ManagerList";
+        return "redirect:/admin/managerList";
     }
 
     /**
@@ -207,18 +207,18 @@ public class AdminController {
      *  @Date: 2022/11/13
      *  @Description: 删除管理员
      */
-    @RequestMapping("/admin/Manager/deleteManager")
+    @RequestMapping("/admin/manager/deleteManager")
     public String deleteManager(String id) {
         log.info("删除管理员 {}",id);
         managerService.removeById(id);
-        return "redirect:/admin/Manager/ManagerList";
+        return "redirect:/admin/managerList";
     }
 
-    @RequestMapping("/admin/Manager/updateManager")
+    @RequestMapping("/admin/manager/updateManager")
     public String updateManager(Manager manager) {
         log.info("管理员{} ，更新成功",manager.getUsername());
         managerService.saveOrUpdate(manager);
-        return "redirect:/admin/Manager/ManagerList";
+        return "redirect:/admin/managerList";
     }
 
 
@@ -228,9 +228,14 @@ public class AdminController {
      *  @Description: 返回管理员详细
      */
 
-    @RequestMapping("/admin/profile")
+    @RequestMapping("/admin/manager/profile")
     public String Profile() {
         return "/admin/profile";
+    }
+
+    @RequestMapping("/admin/logout")
+    public String logout(){
+        return "/admin/index";
     }
 
 

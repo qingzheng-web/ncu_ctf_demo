@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
-<!--th原本没有http://www.thymeleaf.org-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <base th:href="@{/static}">
-  <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{static/css/semantic.min.css}">
-  <link rel="stylesheet" href="../static/css/me.css" th:href="@{static/css/me.css}">
-  <title>NCU-CTF</title>
+      <meta charset="UTF-8">
+      <base th:href="@{/static}">
+      <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{static/css/semantic.min.css}">
+      <link rel="stylesheet" href="../static/css/me.css" th:href="@{static/css/me.css}">
+      <title>NCU-CTF</title>
 </head>
 <body>
 
@@ -20,7 +18,7 @@
       <div class="eight wide column font-center-tiny">
 
         <a href="#" th:href="@{/challenges}" class="m-icon-big m-black m-padded-lr"><i class="clone icon"></i> 挑战</a>
-        <a href="#" th:href="@{/solutions}" class="m-icon-big m-black m-padded-lr"><i class="pencil icon"></i> 题解</a>
+        <a href="#" th:href="@{/solutions}" class="m-icon-big m-black m-padded-lr" ><i class="pencil icon"></i> 题解</a>
         <a href="#" th:href="@{/rank}" class="m-icon-big m-black m-padded-lr"><i class="trophy icon"></i> 排行榜</a>
       </div>
 
@@ -28,20 +26,22 @@
       <!--用户登录信息-->
       <div class="four wide column right aligned font-center-small">
         <div class="ui dropdown user">
-          <img class="ui avatar image" th:src="@{static/images/touxiang/touxiang2.jpg}"
-               src="/static/images/touxiang/touxiang2.jpg">
+          <img class="ui avatar image" th:src="@{static/images/touxiang/touxiang2.jpg}" src="/static/images/touxiang/touxiang2.jpg">
           <span th:text="${user == null ? '请登录':user.getUsername()}">请登录</span>
           <i class="dropdown icon"></i>
           <div class="menu">
             <div class="item">
-              <a href="#" th:href="@{/login}" class="item">登录</a>
+              <a  href="./Login.html" th:href="@{/Login}" class="item">登录</a>
+              <!-- # -->
             </div>
             <div class="item">
-              <a href="#" th:href="@{/user/login}" class="item">个人信息</a>
+              <a  href="./user/profile.html" th:href="@{/user/login}" class="item">个人信息</a>
             </div>
+            <!-- # -->
             <div class="item">
-              <a href="#" th:href="@{/user/logout}" class="item">退出</a>
+              <a href="./index.html" th:href="@{/user/logout}" class="item">退出</a>
             </div>
+            <!-- # -->
           </div>
         </div>
       </div>
@@ -59,10 +59,6 @@
       <div class="ui middle aligned center aligned grid">
         <div class="column">
           <div class="ui segment">
-<!--            `th:action="@{/user/register}"` 是Thymeleaf模板引擎中的表达式语法，用于指定HTML表单提交的目标URL。-->
-<!--            `@{/user/register}` 是一个相对于当前URL的相对路径，用于指定表单提交时的目标URL。在这个例子中，`@{/user/register}` 指定了一个相对于当前URL的 "/user/register" 路径。-->
-<!--            Thymeleaf将自动根据这个表达式为表单的 `action` 属性设置正确的目标URL。这个表达式使得你不需要硬编码具体的URL而可以保持相对路径，这样当部署到不同的环境时，URL会自动适应环境。-->
-<!--            总之，`th:action="@{/user/register}"` 告诉Thymeleaf模板引擎将当前表单的提交目标设置为 "/user/register" 路径。-->
             <form class="ui large form" method="post" th:action="@{/user/register}">
               <div class="field">
                 <div class="ui left icon input">
@@ -157,6 +153,5 @@
       }
     }
   })
-
 </script>
 </html>

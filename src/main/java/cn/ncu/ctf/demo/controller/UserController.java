@@ -79,7 +79,6 @@ public class UserController {
         if(!userServiceOne.getPassword().equals(password)){
             log.info("密码错误");
             redirectAttributes.addFlashAttribute("message","密码错误");
-
             return  "redirect:/login";
         }
         //用户登录成功 将id存储session
@@ -91,7 +90,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("user/register")
+    @RequestMapping("/register")
     public String RegisterPage(
             @ModelAttribute("message") String message, Model model
     ) {
@@ -115,9 +114,9 @@ public class UserController {
         //如果用户已经注册
         if(readyUser != null) {
             log.info("用户已经存在");
-            redirectAttributes.addFlashAttribute("message","用户"+user.getUsername()+"已存在，请返回登录页登录");
+            redirectAttributes.addFlashAttribute("message","用户"+user.getUsername()+"已存在，请返回登录页登录!");
 //            return "redirect:/Register";
-            return "redirect:/Login";
+            return "redirect:/login";
         }
         //如果用户未注册
         String password = user.getPassword();
@@ -129,17 +128,17 @@ public class UserController {
         user.setPassword(password);
         model.addAttribute("user",user);
         model.addAttribute("message","用户"+user.getUsername()+"注册成功！请登录");
-        return "Login";
+        return "redirect:login";
     }
 
     //这里大部分还未创建,需要在user目录下创建对应的html页面
-    @RequestMapping("user/challenges")
+    @RequestMapping("user/challenge")
     public String challenge(HttpServletRequest httpServletRequest,Model model) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User)session.getAttribute("user");
         if(user == null) {
             //如果未登陆的话
-            return "redirect:/Login";//重定向到Login页面
+            return "redirect:/login";//重定向到Login页面
         }
         model.addAttribute("user",user);
         return "redirect:/user/challenge";
@@ -147,11 +146,11 @@ public class UserController {
 
     @RequestMapping("/solutions")
     public String solution() {
-        return "solutions";
+        return "redirect:/user/solution";
     }
 
     //    登出操作
-    @RequestMapping("/logout")
+    @RequestMapping("/user/logout")
     public String doLogout() throws Exception{
 //        Subject currentUser = SecurityUtils.getSubject();
 //        currentUser.logout();
@@ -159,7 +158,7 @@ public class UserController {
     }
 
     /**
-     * 还需要检验是否登录，未登录的话则返回登录页面
+     * 查看个人信息，还需要检验是否登录，未登录的话则返回登录页面
      * @param httpServletRequest
      * @param model
      * @return
@@ -169,11 +168,16 @@ public class UserController {
         HttpSession session = httpServletRequest.getSession();
         User user = (User)session.getAttribute("user");
         if(user == null){
-            return "redirect:/Login";
+            return "redirect:/login";
         }
         model.addAttribute("user",user);
 //        model.addAttribute("message","用户"+user.getUsername()+"已经登录！请登录");
         return "redirect:/user/profile";
+    }
+
+    @RequestMapping("/rank")
+    public String viewRank(){
+        return "redirect:/rank";
     }
 
 

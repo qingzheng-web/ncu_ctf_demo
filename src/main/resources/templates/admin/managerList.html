@@ -26,8 +26,8 @@
           </div>
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a href="#" th:href="@{/admin/information}" class="item">个人信息</a>
-            <a href="#" th:href="@{/admin/layout}" class="item">退出</a>
+            <a href="#" th:href="@{/admin/profile}" class="item">个人信息</a>
+            <a href="#" th:href="@{/admin/logout}" class="item">退出</a>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
 <div class="ui attached pointing menu">
   <div class="ui container" style="flex-direction:row-reverse">
     <a href="#" th:href="@{/admin/UserManage/UserList}" class="item">用户列表</a>
-    <a href="#" th:href="@{/admin/manager/ManagerList}" class="item active">管理员列表</a>
+    <a href="#" th:href="@{/admin/manager/managerList}" class="item active">管理员列表</a>
   </div>
 </div>
 
@@ -61,7 +61,7 @@
 
         <!--搜索-->
         <div class="field">
-          <button type="button" th:href="@{/admin/ManagerList/search}" id="search-btn" class="ui teal basic button mini"><i class="search icon"></i>搜索</button>
+          <button type="button" th:href="@{/admin/managerList/search}" id="search-btn" class="ui teal basic button mini"><i class="search icon"></i>搜索</button>
           <button type="button" id="reset-btn" class="ui button basic teal mini">reset</button>
         </div>
 
@@ -90,21 +90,22 @@
           <td th:text="${manager.getPhone()}">19168271594</td>
           <td th:text="${manager.getLevel()>0 ? '正常':'禁用'}">2022-11-1</td>
           <td>
-            <button th:id="${manager.getId_manager()+'delete'}" class="deleteManager-btn ui mini basic red button m-margin-t-small" th:value="${manager.getId_manager()}">删除</button>
+            <button th:id="${manager.getId_manager()+'delete'}" class="deleteManager-btn ui mini basic red button m-margin-t-small" th:value="${manager.getId_manager()}
+            ">删除</button>
             <button th:id="${manager.getId_manager()+'update'}" class="updateManager-btn ui mini basic teal button m-margin-t-small" th:value="${manager.getId_manager()}">更新</button>
-            <button th:id="${manager.getId_manager()+'changeStatus'}" th:value="${manager.getId_manager()}" class="changeStatus-btn ui mini basic black button m-margin-t-small"><span th:text="${manager.getLevel()>0 ? '禁用':'启用'}">启用</span></button>
+            <button th:id="${manager.getId_manager()+'changeStatus'}" th:value="${manager.getId_manager()}"  class="changeStatus-btn ui mini basic black button m-margin-t-small"><span th:text="${manager.getLevel()>0 ? '禁用':'启用'}">启用</span></button>
           </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
           <th colspan="6">
-<!--            <div class="ui pagination menu" th:if="${page.totalPages}>1">-->
-<!--              <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="icon item">上一页</a>-->
-<!--              <a onclick="page(this)" th:attr="data-page=${page.number}+1" th:unless="${page.last}" class="icon item">下一页</a>-->
-<!--            </div>-->
+           <div class="ui pagination menu" th:if="${page.totalPages}>1">
+             <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="icon item">上一页</a>
+             <a onclick="page(this)" th:attr="data-page=${page.number}+1" th:unless="${page.last}" class="icon item">下一页</a>
+            </div>
 
-            <div class="ui right floated small primary labeled icon button addManager"><i class="user icon"></i> 添加管理员 </div>
+            <div class="ui right floated small primary labeled icon button addManager" th:action="/admin/Manager/AddManager"><i class="user icon"></i> 添加管理员 </div>
 
           </th>
         </tr>
@@ -113,7 +114,7 @@
 
 
       <!--弹出层-->
-      <form class="ui modal pushAddManage" action="#" th:action="@{/admin/Manager/AddManager}"  method="post">
+      <form class="ui modal pushAddManage" action="#" th:action="@{/admin/manager/addManager}"  method="post">
         <i class="close icon"></i>
         <div class="header">
           管理员管理
@@ -124,7 +125,7 @@
           </div>
           <div class="description">
 
-            <div class="ui header">添加管理员</div>
+            <div class="ui header" th:action="/admin/Manager/addManager">添加管理员</div>
             <div class="ui form"  id="publish-form">
 
               <div class="fields">
@@ -375,7 +376,7 @@
             },
             onApprove : function() {
               $.ajax({
-                url: "/admin/Manager/deleteManager",
+                url: "/admin/manager/deleteManager",
                 data: {id},
                 type: "POST",
                 dataType: "json",
@@ -390,7 +391,7 @@
   $('.updateManager-btn').click(function (){
     var id = this.value;
     $.ajax({
-      url: "/admin/Manager/Profile",
+      url: "/admin/manager/profile",
       data: {id},
       type:"POST",
       dataType: "json",
@@ -414,6 +415,7 @@
   //启用/禁用
 
 
+  //添加还没写，不过可以直接加上th:action="/admin/Manager/addManager"
 
 
 </script>
