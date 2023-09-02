@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <base th:href="@{/}">
-    <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{static/css/semantic.min.css}">
-    <link rel="stylesheet" href="../static/css/me.css" th:href="@{static/css/me.css}">
-    <title>NCU-CTF</title>
+  <meta charset="UTF-8">
+  <base th:href="@{/}">
+  <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{static/css/semantic.min.css}">
+  <link rel="stylesheet" href="../static/css/me.css" th:href="@{static/css/me.css}">
+  <title>NCU-CTF</title>
 </head>
 <body>
 <nav>
@@ -31,10 +30,10 @@
           <i class="dropdown icon"></i>
           <div class="menu">
             <div class="item">
-              <a  href="#" th:href="@{/Login}" class="item">登录</a>
+              <a  href="#" th:href="@{/login}" class="item">登录</a>
             </div>
             <div class="item">
-              <a  href="#" th:href="@{/user/Login}" class="item">个人信息</a>
+              <a  href="#" th:href="@{/user/profile}" class="item">个人信息</a>
             </div>
             <div class="item">
               <a href="#" th:href="@{/user/logout}" class="item">退出</a>
@@ -49,46 +48,46 @@
 
 
 
-    <div class="ui container center aligned m-margin-tb-big">
-      <div class="ui row center aligned">
-        <h1 class="ui huge header azure-color">Login</h1>
-      </div>
+<div class="ui container center aligned m-margin-tb-big">
+  <div class="ui row center aligned">
+    <h1 class="ui huge header azure-color">登录</h1>
+  </div>
 
-      <div class="ui row center aligned m-margin-tb-big">
-          <div class="ui m-container-small">
-            <div class="ui middle aligned center aligned grid">
-              <div class="column">
-                <div class="ui segment">
-                  <form class="ui large form" method="post" th:action="@{/user/login}">
-                    <div class="field">
-                      <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="username" th:value="${user?.getUsername()}" placeholder="用户名">
-                      </div>
-                    </div>
-
-                    <div class="field">
-                      <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <input type="password" name="password" th:value="${user?.getPassword()}" placeholder="密码">
-                      </div>
-                    </div>
-                    <button class="ui fluid large teal submit button m-margin-tb-big">Login</button>
-                    <span>没有账号？<a class="m-black" href="#" th:href="@{/register}">点击这里注册</a></span>
-                    <div class="ui error mini message"></div>
-                    <div class="ui mini message" th:unless="${#strings.isEmpty(message)}">
-                      <span th:text="${message}"></span>
-                    </div>
-                  </form>
+  <div class="ui row center aligned m-margin-tb-big">
+    <div class="ui m-container-small">
+      <div class="ui middle aligned center aligned grid">
+        <div class="column">
+          <div class="ui segment">
+            <form class="ui large form" method="post" th:action="@{/user/login}">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="username" th:value="${user?.getUsername()}" placeholder="用户名">
                 </div>
               </div>
-            </div>
+
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" th:value="${user?.getPassword()}" placeholder="密码">
+                </div>
+              </div>
+              <button class="ui fluid large teal submit button m-margin-tb-big">登录</button>
+              <span>没有账号？<a class="m-black" href="#" th:href="@{/register}">点击这里注册</a></span>
+              <div class="ui error mini message"></div>
+              <div class="ui mini message" th:unless="${#strings.isEmpty(message)}">
+                <span th:text="${message}"></span>
+              </div>
+            </form>
           </div>
+        </div>
       </div>
-
-
-
     </div>
+  </div>
+
+
+
+</div>
 
 
 
@@ -121,7 +120,6 @@
       }
     }
   })
-  //this.$refs.form.resetFields()
 </script>
 
 </html>

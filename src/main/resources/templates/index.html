@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--这是打开后的首页-->
-<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <meta charset="UTF-8">
     <base th:href="@{/}">
@@ -17,37 +17,29 @@
             </div>
             <div class="eight wide column font-center-tiny">
 
-                <a href="#" th:href="@{/challenges}" class="m-icon-big m-black m-padded-lr"><i class="clone icon"></i> 挑战</a>
-                <a href="#" th:href="@{/admin/solutions}" class="m-icon-big m-black m-padded-lr" ><i class="pencil icon"></i> 题解</a>
-                <a href="#" th:href="@{/rank}" class="m-icon-big m-black m-padded-lr"><i class="trophy icon"></i> 排行榜</a>
+                <a href="#" th:href="@{/challenge}" class="m-icon-big m-black m-padded-lr"><i class="clone icon"></i>
+                    挑战</a>
+                <a href="#" th:href="@{/solutions}" class="m-icon-big m-black m-padded-lr"><i class="pencil icon"></i>
+                    题解</a>
+                <a href="#" th:href="@{/rank}" class="m-icon-big m-black m-padded-lr"><i class="trophy icon"></i>
+                    排行榜</a>
             </div>
 
 
             <!--用户登录信息-->
             <div class="four wide column right aligned font-center-small">
                 <div class="ui dropdown user">
-                    <img class="ui avatar image" th:src="@{static/images/touxiang/touxiang2.jpg}" src="/static/images/touxiang/touxiang2.jpg">
+                    <img class="ui avatar image" th:src="@{static/images/touxiang/touxiang2.jpg}"
+                         src="/static/images/touxiang/touxiang2.jpg">
                     <span th:text="${user == null ? '请登录':user.getUsername()}">请登录</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item">
-                            <a  href="#" th:href="@{/Login}" class="item">登录</a>
+                            <a href="#" th:href="@{/login}" class="item">登录</a>
                         </div>
                         <div class="item">
-                            <a  href="#" th:href="@{/Login.html}" class="item">个人信息</a>
+                            <a href="#" th:href="@{/user/login}" class="item">个人信息</a>
                         </div>
-<!--                            <div class="ui dropdown">-->
-<!--                                <a href="#" class="item">个人信息</a>-->
-<!--                                <i class="dropdown icon"></i>-->
-<!--                                <div class="menu">-->
-<!--                                    &lt;!&ndash; 修改链接为个人信息页面 &ndash;&gt;-->
-<!--                                    <a href="#" th:href="@{/user/login}" class="item">操作1</a>-->
-<!--                                    &lt;!&ndash; 添加更多操作项，每个项都跳转到对应的页面 &ndash;&gt;-->
-<!--                                    <a href="#" th:href="@{/user/some_other_page}" class="item">操作2</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-
                         <div class="item">
                             <a href="#" th:href="@{/user/logout}" class="item">退出</a>
                         </div>
@@ -59,149 +51,143 @@
 </nav>
 
 
-    <div class="ui container m-margin-t-big">
-        <div class="ui grid">
-            <!--通知、排行榜、日志-->
-            <div class="ui eleven wide column">
-                <div class="ui segment">通知</div>
-                <div class="ui grid">
-                    <!--个人榜-->
-                    <div class="ui eight wide column">
-                        <div class="ui segment">
-                            <div class="ui grid">
-                                <div class="row">
-                                    <div class="sixteen column center aligned">
-                                        <h4>个人榜</h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        排名
-                                    </div>
-
-                                    <div class="ui nine wide column">
-                                        用户
-                                    </div>
-
-                                    <div class="ui four wide column">
-                                        分数
-                                    </div>
-                                </div>
-                                <div class="ui divider m-margin-tb-mini"></div>
-                                <!--个人榜数据-->
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        <span>1</span>
-                                    </div>
-
-                                    <div class="ui nine wide column">
-                                        <span>ijinge</span>
-                                    </div>
-
-                                    <div class="ui four wide column">
-                                        <span>100</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        <span>1</span>
-                                    </div>
-
-                                    <div class="ui nine wide column">
-                                        <span>ijinge</span>
-                                    </div>
-
-                                    <div class="ui four wide column">
-                                        <span>100</span>
-                                    </div>
+<div class="ui container m-margin-t-big">
+    <div class="ui grid">
+        <!--通知、排行榜、日志-->
+        <div class="ui eleven wide column">
+            <div class="ui segment">通知</div>
+            <div class="ui grid">
+                <!--个人榜-->
+                <div class="ui eight wide column">
+                    <div class="ui segment">
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="sixteen column center aligned">
+                                    <h4>个人榜</h4>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!--团队榜-->
-                    <div class="ui eight wide column">
-                        <div class="ui segment">
-                            <div class="ui grid">
-                                <div class="row">
-                                    <div class="sixteen column center aligned">
-                                        <h4>团队榜</h4>
-                                    </div>
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    排名
                                 </div>
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        排名
-                                    </div>
 
-                                    <div class="ui nine wide column">
-                                        用户
-                                    </div>
-
-                                    <div class="ui four wide column">
-                                        分数
-                                    </div>
+                                <div class="ui nine wide column">
+                                    用户
                                 </div>
-                                <div class="ui divider m-margin-tb-mini"></div>
-                                <!--个人榜数据-->
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        <span>1</span>
-                                    </div>
 
-                                    <div class="ui nine wide column">
-                                        <span>ijinge</span>
-                                    </div>
-
-                                    <div class="ui four wide column">
-                                        <span>100</span>
-                                    </div>
+                                <div class="ui four wide column">
+                                    分数
                                 </div>
-                                <div class="row">
-                                    <div class="ui three wide column">
-                                        <span>1</span>
-                                    </div>
+                            </div>
+                            <div class="ui divider m-margin-tb-mini"></div>
+                            <!--个人榜数据-->
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    <span>1</span>
+                                </div>
 
-                                    <div class="ui nine wide column">
-                                        <span>ijinge</span>
-                                    </div>
+                                <div class="ui nine wide column">
+                                    <span>ijinge</span>
+                                </div>
 
-                                    <div class="ui four wide column">
-                                        <span>100</span>
-                                    </div>
+                                <div class="ui four wide column">
+                                    <span>100</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    <span>2</span>
+                                </div>
+
+                                <div class="ui nine wide column">
+                                    <span>Q1ng</span>
+                                </div>
+
+                                <div class="ui four wide column">
+                                    <span>100</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="ui segment m-margin-t-big">日志</div>
+                <!--团队榜-->
+                <div class="ui eight wide column">
+                    <div class="ui segment">
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="sixteen column center aligned">
+                                    <h4>团队榜</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    排名
+                                </div>
 
+                                <div class="ui nine wide column">
+                                    用户
+                                </div>
 
-            </div>
+                                <div class="ui four wide column">
+                                    分数
+                                </div>
+                            </div>
+                            <div class="ui divider m-margin-tb-mini"></div>
+                            <!--个人榜数据-->
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    <span>1</span>
+                                </div>
 
-            <div class="ui five wide column">
-                <div class="ui segment">
+                                <div class="ui nine wide column">
+                                    <span>ijinge</span>
+                                </div>
 
+                                <div class="ui four wide column">
+                                    <span>100</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ui three wide column">
+                                    <span>2</span>
+                                </div>
+
+                                <div class="ui nine wide column">
+                                    <span>Q1ng</span>
+                                </div>
+
+                                <div class="ui four wide column">
+                                    <span>100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="ui segment m-margin-t-big">日志</div>
+
 
         </div>
 
+        <div class="ui five wide column">
+            <div class="ui segment">
+
+            </div>
+        </div>
+
     </div>
+
+</div>
 
 
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../static/js/semantic.min.js" th:src="@{static/js/semantic.min.js}"></script>
 
-<script type="text/javascript">
+<script>
     $('.ui.dropdown.user')
         .dropdown()
     ;
-<!--    这段代码是一个JavaScript脚本，用于使用jQuery库来初始化一个下拉菜单（dropdown）的UI组件。
-具体来说，代码使用了`$('.ui.dropdown.user')`来选中一个class为"ui.dropdown.user"的元素，
-然后调用`.dropdown()`方法来初始化该元素为一个下拉菜单。
-这段代码的作用是将对应的HTML元素转换为一个下拉菜单，并添加相应的交互效果和功能。
-具体的下拉菜单内容和功能可能需要根据实际情况和在其他地方的代码实现来确定。
--->
 
 </script>
 </html>
