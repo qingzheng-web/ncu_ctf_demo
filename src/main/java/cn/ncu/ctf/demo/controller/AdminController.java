@@ -122,7 +122,7 @@ public class AdminController {
 //    }
 
     //做了分页，但没有查看效果
-    @RequestMapping("/admin/UserManage/UserList")
+    @RequestMapping("/admin/UserManage/userList")
     public String UserList(Model model,HttpServletRequest httpServletRequest,
                            @RequestParam(defaultValue = "1") Integer pageNum,
                            @RequestParam(defaultValue = "10") Integer pageSize){
@@ -137,7 +137,7 @@ public class AdminController {
     public String deleteUser(String id){
         log.info("删除用户 {}",id);
         userService.removeById(id);
-        return "redirect:/admin/UserManage";
+        return "redirect:/admin/userList";
     }
 
 
@@ -148,7 +148,7 @@ public class AdminController {
      *  @Description: 相应异步查询用户信息，便于更新操作
      */
     @ResponseBody
-    @RequestMapping("/admin/Manager/Profile")
+    @RequestMapping("/admin/profile")
     public HashMap<Object,Object> showManagerProfile(String id) {
         HashMap<Object, Object> map = new HashMap<>();
         map.put("Manager",managerService.getById(id));
@@ -199,7 +199,7 @@ public class AdminController {
         //md5加密
         manager.setPassword(DigestUtils.md5DigestAsHex(manager.getPassword().getBytes()));
         managerService.save(manager);
-        return "redirect:/admin/managerList";
+        return "/admin/managerList";
     }
 
     /**

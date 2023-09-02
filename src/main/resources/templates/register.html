@@ -31,7 +31,7 @@
           <i class="dropdown icon"></i>
           <div class="menu">
             <div class="item">
-              <a  href="./Login.html" th:href="@{/Login}" class="item">登录</a>
+              <a  href="./login.html" th:href="@{/login}" class="item">登录</a>
               <!-- # -->
             </div>
             <div class="item">
@@ -96,7 +96,7 @@
 
               <button class="ui fluid large teal submit button m-margin-tb-big">注册</button>
 
-              <span>已有账号？<a class="m-black" href="#">点击这里登录</a></span>
+              <span>已有账号？<a class="m-black" href="#" th="@{/login}">点击这里登录</a></span>
               <div class="ui error mini message"></div>
               <div class="ui mini message" th:unless="${#strings.isEmpty(message)}">
                 <span th:text="${message}">错误信息</span>

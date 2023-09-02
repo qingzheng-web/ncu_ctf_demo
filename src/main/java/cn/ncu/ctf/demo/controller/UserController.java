@@ -79,7 +79,7 @@ public class UserController {
         if(!userServiceOne.getPassword().equals(password)){
             log.info("密码错误");
             redirectAttributes.addFlashAttribute("message","密码错误");
-            return  "redirect:/login";
+            return  "/login";
         }
         //用户登录成功 将id存储session
         HttpSession session = httpServletRequest.getSession();
@@ -95,7 +95,7 @@ public class UserController {
             @ModelAttribute("message") String message, Model model
     ) {
         model.addAttribute("message",message);
-        return "Register";
+        return "register";
     }
 
     //用户注册
@@ -116,7 +116,7 @@ public class UserController {
             log.info("用户已经存在");
             redirectAttributes.addFlashAttribute("message","用户"+user.getUsername()+"已存在，请返回登录页登录!");
 //            return "redirect:/Register";
-            return "redirect:/login";
+            return "login";
         }
         //如果用户未注册
         String password = user.getPassword();
@@ -136,18 +136,20 @@ public class UserController {
     public String challenge(HttpServletRequest httpServletRequest,Model model) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User)session.getAttribute("user");
-        if(user == null) {
-            //如果未登陆的话
-            return "redirect:/login";//重定向到Login页面
-        }
+//        if(user == null) {
+//            //如果未登陆的话
+//            return "/login";//重定向到Login页面
+//        }
         model.addAttribute("user",user);
-        return "redirect:/user/challenge";
+        return "user/challenge";
     }
 
-    @RequestMapping("/solutions")
+    @RequestMapping("/user/solution")
     public String solution() {
-        return "redirect:/user/solution";
+        return "/user/solution";
     }
+
+
 
     //    登出操作
     @RequestMapping("/user/logout")
@@ -172,12 +174,12 @@ public class UserController {
         }
         model.addAttribute("user",user);
 //        model.addAttribute("message","用户"+user.getUsername()+"已经登录！请登录");
-        return "redirect:/user/profile";
+        return "/user/profile";
     }
 
     @RequestMapping("/rank")
     public String viewRank(){
-        return "redirect:/rank";
+        return "/rank";
     }
 
 
